@@ -39,6 +39,9 @@ public class Start{
             System.out.println("Supported Minecraft server versions:");
             System.out.println("[1] 1.21.1");
             System.out.println("[2] 1.21.2");
+            System.out.println("[3] 1.21.3");
+            System.out.println("[4] 1.21.4");
+            System.out.println("[5] 1.21.5");
 
             try (Scanner scanner = new Scanner(System.in)) {
                 System.out.print("Choose 1 - 5: ");
@@ -52,6 +55,15 @@ public class Start{
                     ChooseVersion(minecraft_version);
                 }else if (user_choose.equals("2")) {
                     minecraft_version = "1.21.2";
+                    ChooseVersion(minecraft_version);
+                }else if (user_choose.equals("3")) {
+                    minecraft_version = "1.21.3";
+                    ChooseVersion(minecraft_version);
+                }else if (user_choose.equals("4")) {
+                    minecraft_version = "1.21.4";
+                    ChooseVersion(minecraft_version);
+                }else if (user_choose.equals("5")) {
+                    minecraft_version = "1.21.5";
                     ChooseVersion(minecraft_version);
                 }else {
                     System.out.println("[MCS-SETUP]: Please choose a valid option.");
@@ -100,31 +112,69 @@ public class Start{
             // 1.21.1
             "https://piston-data.mojang.com/v1/objects/59353fb40c36d304f2035d51e7d6e6baa98dc05c/server.jar",
             // 1.21.2
-            "https://piston-data.mojang.com/v1/objects/7bf95409b0d9b5388bfea3704ec92012d273c14c/server.jar"
+            "https://piston-data.mojang.com/v1/objects/7bf95409b0d9b5388bfea3704ec92012d273c14c/server.jar",
+            // 1.21.3
+            "https://piston-data.mojang.com/v1/objects/45810d238246d90e811d896f87b14695b7fb6839/server.jar",
+            // 1.21.4
+            "https://piston-data.mojang.com/v1/objects/4707d00eb834b446575d89a61a11b5d548d8c001/server.jar",
+            // 1.21.5
+            "https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar"
         };
         String save_path = folder_name.getPath();
         String file_name = "server.jar";
 
-        if (minecraft_version.equals("1.21.1")) {
-            System.out.println("[MCS-SETUP]: Downloading server file for version 1.21.1...");
-            try {
-                DownloadFile(file_urls[0], save_path + File.separator + file_name);
-                System.out.println("\n[MCS-SETUP]: Downloaded server file successfully.");
-                RunFileServer(save_path, file_name);
-            }catch (IOException e) {
-                System.out.println("\n[MCS-SETUP]: Failed to download server file: " + e.getMessage());
+        switch (minecraft_version) {
+            case "1.21.1" -> {
+                System.out.println("[MCS-SETUP]: Downloading server file for version 1.21.1...");
+                try {
+                    DownloadFile(file_urls[0], save_path + File.separator + file_name);
+                    System.out.println("\n[MCS-SETUP]: Downloaded server file successfully.");
+                    RunFileServer(save_path, file_name);
+                }catch (IOException e) {
+                    System.out.println("\n[MCS-SETUP]: Failed to download server file: " + e.getMessage());
+                }
             }
-        }else if (minecraft_version.equals("1.21.2")) {
-            System.out.println("[MCS-SETUP]: Downloading server file for version 1.21.2...");
-            try {
-                DownloadFile(file_urls[1], save_path + File.separator + file_name);
-                System.out.println("\n[MCS-SETUP]: Downloaded server file successfully.");
-                RunFileServer(save_path, file_name);
-            }catch (IOException e) {
-                System.out.println("\n[MCS-SETUP]: Failed to download server file: " + e.getMessage());
+            case "1.21.2" -> {
+                System.out.println("[MCS-SETUP]: Downloading server file for version 1.21.2...");
+                try {
+                    DownloadFile(file_urls[1], save_path + File.separator + file_name);
+                    System.out.println("\n[MCS-SETUP]: Downloaded server file successfully.");
+                    RunFileServer(save_path, file_name);
+                }catch (IOException e) {
+                    System.out.println("\n[MCS-SETUP]: Failed to download server file: " + e.getMessage());
+                }
+            }
+            case "1.21.3" -> {
+                System.out.println("[MCS-SETUP]: Downloading server file for version 1.21.3...");
+                try {
+                    DownloadFile(file_urls[2], save_path + File.separator + file_name);
+                    System.out.println("\n[MCS-SETUP]: Downloaded server file successfully.");
+                    RunFileServer(save_path, file_name);
+                }catch (IOException e) {
+                    System.out.println("\n[MCS-SETUP]: Failed to download server file: " + e.getMessage());
+                }
+            }
+            case "1.21.4" -> {
+                System.out.println("[MCS-SETUP]: Downloading server file for version 1.21.4...");
+                try {
+                    DownloadFile(file_urls[3], save_path + File.separator + file_name);
+                    System.out.println("\n[MCS-SETUP]: Downloaded server file successfully.");
+                    RunFileServer(save_path, file_name);
+                }catch (IOException e) {
+                    System.out.println("\n[MCS-SETUP]: Failed to download server file: " + e.getMessage());
+                }
+            }
+            case "1.21.5" -> {
+                System.out.println("[MCS-SETUP]: Downloading server file for version 1.21.5...");
+                try {
+                    DownloadFile(file_urls[4], save_path + File.separator + file_name);
+                    System.out.println("\n[MCS-SETUP]: Downloaded server file successfully.");
+                    RunFileServer(save_path, file_name);
+                }catch (IOException e) {
+                    System.out.println("\n[MCS-SETUP]: Failed to download server file: " + e.getMessage());
+                }
             }
         }
-        
     }
 
     public static void RunFileServer(String save_path, String file_name) {
